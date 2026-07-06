@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lynda Gratton Website Clone with Sanity CMS & Vercel
+
+This repository is a premium, responsive duplicate of Lynda Gratton's professional website ([lyndagratton.com](https://lyndagratton.com/)). It is built using **Next.js (App Router)**, **TypeScript**, and **Vanilla CSS**, with content managed dynamically through **Sanity CMS**, ready to deploy to **Vercel**.
+
+## Features
+
+- **Dynamic Homepage**: Features an elegant academic layout, biography, book grid, blog/insights feed, speaking keynotes, and inquiry forms.
+- **Embedded Sanity Studio**: Access the database directly at `/studio` within your deployed app to publish, update, and manage your website copy, books, and articles.
+- **Vanilla CSS System**: Complete stylesheet control with customized typography combinations (Playfair Display & Inter), HSL tokens, sleek grid systems, and micro-hover animations.
+- **Dynamic Routing**: Clickable blog posts in the "Thinking" section map to dynamically rendered detail pages (`/thinking/[slug]`).
+- **High-Fidelity Fallbacks**: The site is functional out-of-the-box. If Sanity is not connected or returns empty values, the site gracefully falls back to mock data populated with Lynda Gratton's actual professional biographies, publications, and keynote topics.
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
+### 1. Installation
+Clone the repository, navigate into the directory, and install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Local Development
+Start the Next.js development server:
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Sanity CMS Setup & Integration
 
-## Learn More
+To connect this website to your Sanity database:
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Create a Sanity Project
+If you don't have one, sign up at [sanity.io](https://www.sanity.io/) and create a new project:
+```bash
+# In your terminal (run from workspace)
+npx sanity@latest init
+```
+Or create it in your browser dashboard. Note down your **Project ID** and **Dataset name** (usually `production`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. Set Up Environment Variables
+Create a file named `.env.local` in the project root and add your credentials:
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID="your-sanity-project-id"
+NEXT_PUBLIC_SANITY_DATASET="production"
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. Populating Content via Sanity Studio
+Once the environment variables are set, start the development server and navigate to [http://localhost:3000/studio](http://localhost:3000/studio).
+- Log in with your Sanity credentials.
+- You will see the custom sidebar containing:
+  - **Hero Section**: Edit your homepage headline, roles, bio text, and upload a profile picture.
+  - **Speaking & Advisory**: Set speaking bios, list your keynote topics, and add a contact email.
+  - **Books**: Add your published works with custom cover images, descriptions, external shopping links, and step-by-step frameworks (e.g. for *Redesigning Work*).
+  - **Thinking & Insights**: Write and publish blog posts.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Vercel Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deploying the website to Vercel is straightforward:
+
+1. Push your repository to **GitHub**, **GitLab**, or **Bitbucket**.
+2. Go to the **Vercel Dashboard** and click **Add New > Project**.
+3. Import your repository.
+4. Under **Environment Variables**, add the following keys:
+   - `NEXT_PUBLIC_SANITY_PROJECT_ID`
+   - `NEXT_PUBLIC_SANITY_DATASET`
+5. Click **Deploy**. Vercel will automatically build the Next.js application and host it on a fast, globally distributed CDN.
+
+### Setting Up Webhooks (Optional)
+To trigger automated rebuilding of your website whenever you publish a new article or edit content in Sanity:
+1. In Vercel, go to **Project Settings > Git** and scroll down to **Deploy Hooks**. Create a hook (e.g. named `sanity-webhook`) and copy the generated URL.
+2. In your Sanity Project Dashboard (under **API > Webhooks**), add a new webhook pointing to that Vercel URL. Configure it to trigger on document updates.
