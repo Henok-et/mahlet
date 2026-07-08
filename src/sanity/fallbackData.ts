@@ -79,7 +79,7 @@ export const fallbackHero: HeroData = {
   name: "Mahlet Teshome Kebede",
   nationality: "Ethiopian",
   bio: "Science Policy and Sustainable Development Leader with over 20 years of experience designing and implementing equity-driven policies across 20+ countries. Adept at negotiating multilateral agreements and forging partnerships with UN agencies, governments, international CSOs, and financing institutions to advance AU Agenda 2063 and SDG-aligned programs.",
-  profileImageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop", 
+  profileImageUrl: "/mahletpfp.jpg",
   ctaPrimaryText: "View Experience",
   ctaPrimaryUrl: "#experience",
   ctaSecondaryText: "Contact Me",
