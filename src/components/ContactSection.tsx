@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { SiteSettingsData } from "@/sanity/fallbackData";
 
 interface ContactSectionProps {
@@ -8,6 +9,7 @@ interface ContactSectionProps {
 }
 
 export default function ContactSection({ settings }: ContactSectionProps) {
+  const ref = useScrollReveal();
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -75,8 +77,8 @@ export default function ContactSection({ settings }: ContactSectionProps) {
   const firstName = settings.headerName ? settings.headerName.split(" ")[0] : "Mahlet";
 
   return (
-    <section className="section" id="contact">
-      <div className="container">
+    <section className="section" id="contact" ref={ref as React.RefObject<HTMLElement>}>
+      <div className="container reveal">
         <div className="contact-section-grid">
 
           {/* Left: Info */}
@@ -209,7 +211,7 @@ export default function ContactSection({ settings }: ContactSectionProps) {
                         name="organization"
                         value={formState.organization}
                         onChange={handleChange}
-                        placeholder="African Union"
+                        placeholder="Your Organization"
                       />
                     </div>
                     <div className="form-group">
@@ -221,7 +223,7 @@ export default function ContactSection({ settings }: ContactSectionProps) {
                         name="jobTitle"
                         value={formState.jobTitle}
                         onChange={handleChange}
-                        placeholder="Director"
+                        placeholder="Your Position"
                       />
                     </div>
                   </div>

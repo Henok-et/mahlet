@@ -1,3 +1,5 @@
+"use client";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { BookItem } from "@/sanity/fallbackData";
 
 interface BooksSectionProps {
@@ -5,20 +7,22 @@ interface BooksSectionProps {
 }
 
 export default function BooksSection({ books }: BooksSectionProps) {
+  const ref = useScrollReveal();
   if (!books || books.length === 0) return null;
 
   return (
-    <section className="section" id="books">
+    <section className="section" id="books" ref={ref as React.RefObject<HTMLElement>}>
       <div className="container">
-        <div className="section-header">
+        <div className="section-header reveal">
           <h2 className="section-title">Books</h2>
           <p className="section-subtitle">Published works available for purchase.</p>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "3rem" }}>
-          {books.map((book) => (
+          {books.map((book, i) => (
             <div
               key={book._id}
+              className={`reveal reveal-delay-${Math.min(i + 1, 4)}`}
               style={{
                 display: "grid",
                 gridTemplateColumns: "auto 1fr",

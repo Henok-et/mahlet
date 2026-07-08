@@ -1,3 +1,5 @@
+"use client";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { EducationItem } from "@/sanity/fallbackData";
 
 interface EducationSectionProps {
@@ -5,15 +7,16 @@ interface EducationSectionProps {
 }
 
 export default function EducationSection({ data }: EducationSectionProps) {
+  const ref = useScrollReveal();
   if (!data || data.length === 0) return null;
 
   const degrees = data.filter(d => !d.isTraining);
   const trainings = data.filter(d => d.isTraining);
 
   return (
-    <section className="section" id="education">
+    <section className="section" id="education" ref={ref as React.RefObject<HTMLElement>}>
       <div className="container">
-        <div className="section-header">
+        <div className="section-header reveal">
           <h2 className="section-title">Education & Trainings</h2>
           <p className="section-subtitle">Academic background and continuous professional development.</p>
         </div>
@@ -21,7 +24,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "3rem" }}>
           
           {/* Degrees */}
-          <div>
+          <div className="reveal reveal-delay-1">
             <h3 style={{ marginBottom: "1.5rem", borderBottom: "2px solid var(--color-light)", paddingBottom: "0.5rem" }}>Academic Degrees</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
               {degrees.map(item => (
@@ -35,7 +38,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
           </div>
 
           {/* Trainings */}
-          <div>
+          <div className="reveal reveal-delay-2">
             <h3 style={{ marginBottom: "1.5rem", borderBottom: "2px solid var(--color-light)", paddingBottom: "0.5rem" }}>Professional Trainings</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
               {trainings.map(item => (
