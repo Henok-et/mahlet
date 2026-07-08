@@ -216,7 +216,22 @@ export const fallbackVoluntary: VoluntaryItem[] = [
     _id: "vol-2",
     organization: "Rotary Club of Addis Ababa Central-Mella",
     role: "Various positions (Rotarian)",
-    dateRange: "February 2002 to 2012"
+    dateRange: "February 2002 to 2012",
+    link: "https://www.facebook.com/RCAACMELLA/"
+  },
+  {
+    _id: "vol-3",
+    organization: "The Compact",
+    role: "Member of the Advisory Committee",
+    dateRange: "February 2012 to 2016",
+    link: "https://croplife.org/plant-biotechnology/stewardship-2/the-compact/"
+  },
+  {
+    _id: "vol-4",
+    organization: "Destiny Ethiopia initiative",
+    role: "Core Team member",
+    dateRange: "December 2018 to May 2019",
+    link: "https://business.facebook.com/destinyethiopiainitiative/"
   }
 ];
 
@@ -259,7 +274,18 @@ export const fallbackCompetencies: CompetencyItem[] = [
     _id: "comp-3",
     category: "Organizational and Communication Skills",
     description: "Design and conduct training workshops, seminars, event organization and co-ordination, delivery of technical papers and presentations. Established a broad network of contacts."
+  },
+  {
+    _id: "comp-4",
+    category: "Social Interaction",
+    description: "Networking and team building projects."
   }
+];
+
+export const fallbackLanguages: string[] = [
+  "English (Fluent)",
+  "Amharic (Fluent)",
+  "French (Rudimentary)"
 ];
 
 export const fallbackBooks: BookItem[] = [

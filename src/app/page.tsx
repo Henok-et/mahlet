@@ -4,6 +4,9 @@ import BooksSection from "@/components/BooksSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import EducationSection from "@/components/EducationSection";
 import PublicationsSection from "@/components/PublicationsSection";
+import CompetenciesSection from "@/components/CompetenciesSection";
+import VoluntarySection from "@/components/VoluntarySection";
+import RefereesSection from "@/components/RefereesSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -13,7 +16,11 @@ import {
   getExperience, 
   getEducation, 
   getPublications,
-  getBooks
+  getBooks,
+  getCompetencies,
+  getVoluntary,
+  getReferees,
+  fallbackLanguages
 } from "@/sanity/queries";
 
 export default async function Home() {
@@ -23,6 +30,9 @@ export default async function Home() {
   const experienceData = await getExperience();
   const educationData = await getEducation();
   const publicationsData = await getPublications();
+  const competenciesData = await getCompetencies();
+  const voluntaryData = await getVoluntary();
+  const refereesData = await getReferees();
 
   return (
     <>
@@ -33,6 +43,9 @@ export default async function Home() {
         <ExperienceSection data={experienceData} />
         <EducationSection data={educationData} />
         <PublicationsSection data={publicationsData} />
+        <CompetenciesSection competencies={competenciesData} languages={fallbackLanguages} />
+        <VoluntarySection data={voluntaryData} />
+        <RefereesSection data={refereesData} />
         <ContactSection settings={settings} />
       </main>
       <Footer settings={settings} />
