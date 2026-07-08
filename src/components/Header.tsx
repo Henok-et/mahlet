@@ -5,13 +5,17 @@ import Link from "next/link";
 
 const navLinks = [
   { href: "#about", label: "About" },
-  { href: "#books", label: "Books" },
-  { href: "#thinking", label: "Thinking" },
-  { href: "#speaking", label: "Speaking" },
+  { href: "#experience", label: "Experience" },
+  { href: "#education", label: "Education" },
+  { href: "#publications", label: "Publications" },
   { href: "#contact", label: "Contact" },
 ];
 
-export default function Header() {
+interface HeaderProps {
+  headerName?: string;
+}
+
+export default function Header({ headerName = "Mahlet Teshome" }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -23,12 +27,17 @@ export default function Header() {
 
   const closeMenu = () => setIsMenuOpen(false);
 
+  // Split name for styling
+  const nameParts = headerName.split(" ");
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(" ");
+
   return (
     <header className={`header${scrolled ? " scrolled" : ""}`}>
       <div className="container header-container">
         {/* Logo */}
         <Link href="/" className="logo" onClick={closeMenu}>
-          Lynda <span>Gratton</span>
+          {firstName} {lastName && <span>{lastName}</span>}
         </Link>
 
         {/* Desktop Navigation */}
@@ -43,7 +52,7 @@ export default function Header() {
             ))}
             <li>
               <Link href="#contact" className="nav-link nav-cta">
-                Book Lynda
+                Contact Me
               </Link>
             </li>
           </ul>
@@ -76,7 +85,7 @@ export default function Header() {
         </ul>
         <div className="mobile-nav-footer">
           <Link href="#contact" className="btn btn-primary" onClick={closeMenu} style={{ width: "100%", justifyContent: "center" }}>
-            Book a Speaking Engagement
+            Contact Me
           </Link>
         </div>
       </div>

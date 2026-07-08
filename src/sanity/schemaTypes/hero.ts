@@ -6,20 +6,19 @@ export const heroSchema = defineType({
   type: "document",
   fields: [
     defineField({
-      name: "title",
-      title: "Hero Title",
+      name: "name",
+      title: "Name",
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "subtitle",
-      title: "Hero Subtitle (Job Titles/Role)",
+      name: "nationality",
+      title: "Nationality",
       type: "string",
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "bio",
-      title: "Biography Summary",
+      title: "Professional Summary",
       type: "text",
       validation: (Rule) => Rule.required(),
     }),
@@ -30,7 +29,6 @@ export const heroSchema = defineType({
       options: {
         hotspot: true,
       },
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "ctaPrimaryText",

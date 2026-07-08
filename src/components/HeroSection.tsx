@@ -7,8 +7,8 @@ interface HeroSectionProps {
 
 export default function HeroSection({ data }: HeroSectionProps) {
   const {
-    title,
-    subtitle,
+    name,
+    nationality,
     bio,
     profileImageUrl,
     ctaPrimaryText,
@@ -26,10 +26,10 @@ export default function HeroSection({ data }: HeroSectionProps) {
           <div className="hero-text">
             <span className="hero-tag">Welcome</span>
 
-            <h1 className="hero-title">{title}</h1>
+            <h1 className="hero-title">{name}</h1>
 
-            {subtitle && (
-              <p className="hero-subtitle">{subtitle}</p>
+            {nationality && (
+              <p className="hero-subtitle">{nationality} National</p>
             )}
 
             <p className="hero-bio">{bio}</p>
@@ -49,21 +49,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
                 </Link>
               )}
             </div>
-
-            {/* Credential Badges */}
-            <div className="hero-badges">
-              {[
-                "Professor · London Business School",
-                "HSM Advisory Founder",
-                "Future of Work Expert",
-                "Bestselling Author",
-              ].map((badge) => (
-                <span key={badge} className="hero-badge">
-                  <span className="hero-badge-dot" />
-                  {badge}
-                </span>
-              ))}
-            </div>
+            
           </div>
 
           {/* Portrait Column */}
@@ -72,12 +58,12 @@ export default function HeroSection({ data }: HeroSectionProps) {
               {profileImageUrl ? (
                 <img
                   src={profileImageUrl}
-                  alt={`Portrait of ${title}`}
+                  alt={`Portrait of ${name}`}
                   loading="eager"
                 />
               ) : (
                 <div className="hero-image-placeholder">
-                  <span>LG</span>
+                  <span>MT</span>
                 </div>
               )}
             </div>

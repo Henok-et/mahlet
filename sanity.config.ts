@@ -2,12 +2,12 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { schemaTypes } from "./src/sanity/schemaTypes";
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "lynda-gratton-cms";
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "8c7h6llw";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 
 export default defineConfig({
   name: "default",
-  title: "Lynda Gratton CMS",
+  title: "Mahlet Teshome CMS",
 
   projectId,
   dataset,
@@ -19,6 +19,16 @@ export default defineConfig({
         S.list()
           .title("Content")
           .items([
+            // Singleton: Site Settings
+            S.listItem()
+              .title("Site Settings")
+              .id("siteSettings")
+              .child(
+                S.document()
+                  .schemaType("siteSettings")
+                  .documentId("siteSettings")
+                  .title("Site Settings")
+              ),
             // Singleton: Hero Settings
             S.listItem()
               .title("Hero Section")
@@ -29,20 +39,14 @@ export default defineConfig({
                   .documentId("hero")
                   .title("Hero Section")
               ),
-            // Singleton: Speaking Section
-            S.listItem()
-              .title("Speaking & Advisory Settings")
-              .id("speakingSection")
-              .child(
-                S.document()
-                  .schemaType("speakingSection")
-                  .documentId("speakingSection")
-                  .title("Speaking & Advisory Settings")
-              ),
             S.divider(),
             // Collections
-            S.documentTypeListItem("book").title("Books"),
-            S.documentTypeListItem("post").title("Thinking & Insights"),
+            S.documentTypeListItem("experience").title("Work Experience"),
+            S.documentTypeListItem("education").title("Education & Trainings"),
+            S.documentTypeListItem("publication").title("Publications"),
+            S.documentTypeListItem("voluntary").title("Voluntary Duties"),
+            S.documentTypeListItem("referee").title("Referees"),
+            S.documentTypeListItem("competency").title("Competencies"),
           ]),
     }),
   ],

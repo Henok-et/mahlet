@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { SiteSettingsData } from "@/sanity/fallbackData";
 
 interface ContactSectionProps {
-  contactEmail: string;
+  settings: SiteSettingsData;
 }
 
-export default function ContactSection({ contactEmail }: ContactSectionProps) {
+export default function ContactSection({ settings }: ContactSectionProps) {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -70,7 +71,8 @@ export default function ContactSection({ contactEmail }: ContactSectionProps) {
     }
   };
 
-  const email = contactEmail || "speaking@hsm-advisory.com";
+  const email = settings.contactEmail || "mteshu@gmail.com";
+  const firstName = settings.headerName ? settings.headerName.split(" ")[0] : "Mahlet";
 
   return (
     <section className="section" id="contact">
@@ -80,11 +82,9 @@ export default function ContactSection({ contactEmail }: ContactSectionProps) {
           {/* Left: Info */}
           <div className="contact-info">
             <span className="section-tag">Get In Touch</span>
-            <h2 className="section-title" style={{ marginTop: "1rem" }}>Connect with Lynda</h2>
+            <h2 className="section-title" style={{ marginTop: "1rem" }}>Connect with {firstName}</h2>
             <p>
-              For speaking requests, advisory partnerships, or consortium
-              memberships — submit your query using the form, or reach out
-              directly to the booking office.
+              For policy advisory, partnerships, or speaking requests — submit your query using the form, or reach out directly via email.
             </p>
 
             <div className="contact-methods">
@@ -117,8 +117,8 @@ export default function ContactSection({ contactEmail }: ContactSectionProps) {
                   </svg>
                 </div>
                 <div className="contact-method-text">
-                  <h4>HSM Advisory Office</h4>
-                  <p>London, United Kingdom</p>
+                  <h4>Location</h4>
+                  <p>Addis Ababa, Ethiopia</p>
                 </div>
               </div>
 
@@ -131,8 +131,8 @@ export default function ContactSection({ contactEmail }: ContactSectionProps) {
                   </svg>
                 </div>
                 <div className="contact-method-text">
-                  <h4>London Business School</h4>
-                  <p>Professor of Management Practice</p>
+                  <h4>Current Role</h4>
+                  <p>Principal Policy Officer, African Union Commission</p>
                 </div>
               </div>
             </div>
@@ -151,8 +151,7 @@ export default function ContactSection({ contactEmail }: ContactSectionProps) {
                 </div>
                 <h4 className="success-title">Inquiry Sent Successfully</h4>
                 <p className="success-msg">
-                  Thank you for reaching out. A representative from HSM
-                  Advisory will review your details and respond shortly.
+                  Thank you for reaching out. I will review your details and respond shortly.
                 </p>
                 <button
                   className="btn btn-secondary"
@@ -210,7 +209,7 @@ export default function ContactSection({ contactEmail }: ContactSectionProps) {
                         name="organization"
                         value={formState.organization}
                         onChange={handleChange}
-                        placeholder="London Business School"
+                        placeholder="African Union"
                       />
                     </div>
                     <div className="form-group">
@@ -222,13 +221,13 @@ export default function ContactSection({ contactEmail }: ContactSectionProps) {
                         name="jobTitle"
                         value={formState.jobTitle}
                         onChange={handleChange}
-                        placeholder="HR Director"
+                        placeholder="Director"
                       />
                     </div>
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label" htmlFor="message">How can we help? *</label>
+                    <label className="form-label" htmlFor="message">How can I help? *</label>
                     <textarea
                       className="form-control"
                       id="message"
@@ -236,7 +235,7 @@ export default function ContactSection({ contactEmail }: ContactSectionProps) {
                       value={formState.message}
                       onChange={handleChange}
                       required
-                      placeholder="Keynote booking, advisory inquiry, consortium questions..."
+                      placeholder="Policy advisory inquiry, partnerships..."
                     />
                   </div>
 
