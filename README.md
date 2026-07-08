@@ -1,14 +1,14 @@
-# Lynda Gratton Website Clone with Sanity CMS & Vercel
+# Mahlet Teshome Website with Sanity CMS & Vercel
 
-This repository is a premium, responsive duplicate of Lynda Gratton's professional website ([lyndagratton.com](https://lyndagratton.com/)). It is built using **Next.js (App Router)**, **TypeScript**, and **Vanilla CSS**, with content managed dynamically through **Sanity CMS**, ready to deploy to **Vercel**.
+This repository is a premium, responsive professional website for Mahlet Teshome. It is built using **Next.js (App Router)**, **TypeScript**, and **Vanilla CSS**, with content managed dynamically through **Sanity CMS**, ready to deploy to **Vercel**.
 
 ## Features
 
-- **Dynamic Homepage**: Features an elegant academic layout, biography, book grid, blog/insights feed, speaking keynotes, and inquiry forms.
-- **Embedded Sanity Studio**: Access the database directly at `/studio` within your deployed app to publish, update, and manage your website copy, books, and articles.
+- **Sanity CMS Integration**: Fully dynamic content sourcing. Sections for Work Experience, Education, Publications, and more are managed directly via Sanity.
+- **Premium Design**: Modern aesthetic with fluid typography, custom micro-animations, glassmorphism, and responsive layouts.
 - **Vanilla CSS System**: Complete stylesheet control with customized typography combinations (Playfair Display & Inter), HSL tokens, sleek grid systems, and micro-hover animations.
 - **Dynamic Routing**: Clickable blog posts in the "Thinking" section map to dynamically rendered detail pages (`/thinking/[slug]`).
-- **High-Fidelity Fallbacks**: The site is functional out-of-the-box. If Sanity is not connected or returns empty values, the site gracefully falls back to mock data populated with Lynda Gratton's actual professional biographies, publications, and keynote topics.
+- **High-Fidelity Fallbacks**: The site is functional out-of-the-box. If Sanity is not connected or returns empty values, the site gracefully falls back to mock data populated with Mahlet Teshome's actual professional biographies, publications, and keynote topics.
 
 ---
 
