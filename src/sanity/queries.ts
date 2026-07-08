@@ -22,7 +22,7 @@ import {
   LanguageItem
 } from "./fallbackData";
 
-export { fallbackLanguages };
+
 
 export async function getSiteSettings(): Promise<SiteSettingsData> {
   try {
