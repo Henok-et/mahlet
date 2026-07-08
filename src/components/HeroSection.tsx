@@ -18,8 +18,15 @@ export default function HeroSection({ data }: HeroSectionProps) {
   } = data;
 
   return (
-    <section className="hero-section section" id="about">
-      <div className="container">
+    <section className="hero-section section" id="about" style={{ position: "relative", overflow: "hidden" }}>
+      {/* Dynamic Glowing Background */}
+      <div className="hero-glow-bg">
+        <div className="glow-blob blob-1"></div>
+        <div className="glow-blob blob-2"></div>
+        <div className="glow-blob blob-3"></div>
+      </div>
+
+      <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div className="hero-grid">
 
           {/* Text Column */}

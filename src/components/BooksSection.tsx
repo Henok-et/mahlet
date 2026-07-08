@@ -22,30 +22,11 @@ export default function BooksSection({ books }: BooksSectionProps) {
           {books.map((book, i) => (
             <div
               key={book._id}
-              className={`reveal reveal-delay-${Math.min(i + 1, 4)}`}
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto 1fr",
-                gap: "2.5rem",
-                alignItems: "flex-start",
-                background: "var(--color-bg)",
-                borderRadius: "1.5rem",
-                padding: "2.5rem",
-                boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
-                border: "1px solid var(--color-light)",
-              }}
+              className={`book-card reveal reveal-delay-${Math.min(i + 1, 4)}`}
             >
               {/* Book Cover */}
               {book.coverUrl && (
-                <div
-                  style={{
-                    width: "180px",
-                    flexShrink: 0,
-                    borderRadius: "0.75rem",
-                    overflow: "hidden",
-                    boxShadow: "0 12px 32px rgba(0,0,0,0.2)",
-                  }}
-                >
+                <div className="book-cover-wrapper">
                   <img
                     src={book.coverUrl}
                     alt={`Cover of ${book.title}`}
