@@ -9,6 +9,7 @@ import {
   fallbackReferees,
   fallbackCompetencies,
   fallbackBooks,
+  fallbackLanguages,
   SiteSettingsData,
   HeroData,
   ExperienceItem,
@@ -21,7 +22,7 @@ import {
   LanguageItem
 } from "./fallbackData";
 
-export { fallbackLanguages } from "./fallbackData";
+export { fallbackLanguages };
 
 export async function getSiteSettings(): Promise<SiteSettingsData> {
   try {
