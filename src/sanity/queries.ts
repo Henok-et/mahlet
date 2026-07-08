@@ -1,22 +1,39 @@
 import { client } from "./client";
 import {
+  fallbackSiteSettings,
   fallbackHero,
-  fallbackBooks,
-  fallbackPosts,
-  fallbackSpeaking,
+  fallbackExperience,
+  fallbackEducation,
+  fallbackPublications,
+  fallbackVoluntary,
+  fallbackReferees,
+  fallbackCompetencies,
+  SiteSettingsData,
   HeroData,
-  BookItem,
-  PostItem,
-  SpeakingData,
+  ExperienceItem,
+  EducationItem,
+  PublicationItem,
+  VoluntaryItem,
+  RefereeItem,
+  CompetencyItem
 } from "./fallbackData";
 
-// Fetch Hero Singleton Content
+export async function getSiteSettings(): Promise<SiteSettingsData> {
+  try {
+    const data = await client.fetch<SiteSettingsData | null>(`*[_type == "siteSettings"][0]`);
+    return data || fallbackSiteSettings;
+  } catch (error) {
+    console.warn("Sanity fetch error for 'siteSettings', returning mock fallback:", error);
+    return fallbackSiteSettings;
+  }
+}
+
 export async function getHero(): Promise<HeroData> {
   try {
     const data = await client.fetch<HeroData | null>(
       `*[_type == "hero"][0]{
-        title,
-        subtitle,
+        name,
+        nationality,
         bio,
         "profileImageUrl": profileImage.asset->url,
         ctaPrimaryText,
@@ -29,8 +46,8 @@ export async function getHero(): Promise<HeroData> {
     if (!data) return fallbackHero;
     
     return {
-      title: data.title || fallbackHero.title,
-      subtitle: data.subtitle || fallbackHero.subtitle,
+      name: data.name || fallbackHero.name,
+      nationality: data.nationality || fallbackHero.nationality,
       bio: data.bio || fallbackHero.bio,
       profileImageUrl: data.profileImageUrl || fallbackHero.profileImageUrl,
       ctaPrimaryText: data.ctaPrimaryText || fallbackHero.ctaPrimaryText,
@@ -44,101 +61,54 @@ export async function getHero(): Promise<HeroData> {
   }
 }
 
-// Fetch Books List
-export async function getBooks(): Promise<BookItem[]> {
+export async function getExperience(): Promise<ExperienceItem[]> {
   try {
-    const books = await client.fetch<BookItem[] | null>(
-      `*[_type == "book"] | order(publishDate desc){
-        _id,
-        title,
-        "coverUrl": cover.asset->url,
-        publishDate,
-        purchaseUrl,
-        description,
-        framework[]{
-          stepNumber,
-          title,
-          description
-        }
-      }`
+    const data = await client.fetch<ExperienceItem[] | null>(
+      `*[_type == "experience"] | order(order desc)`
     );
-    
-    if (!books || books.length === 0) return fallbackBooks;
-    
-    return books.map((book, idx) => ({
-      _id: book._id,
-      title: book.title || `Book ${idx + 1}`,
-      coverUrl: book.coverUrl || fallbackBooks[idx]?.coverUrl || fallbackBooks[0].coverUrl,
-      publishDate: book.publishDate,
-      purchaseUrl: book.purchaseUrl,
-      description: book.description || "",
-      framework: book.framework,
-    }));
+    if (!data || data.length === 0) return fallbackExperience;
+    return data;
   } catch (error) {
-    console.warn("Sanity fetch error for 'book', returning mock fallback:", error);
-    return fallbackBooks;
+    console.warn("Sanity fetch error for 'experience', returning mock fallback:", error);
+    return fallbackExperience;
   }
 }
 
-// Fetch Posts/Articles
-export async function getPosts(): Promise<PostItem[]> {
+export async function getEducation(): Promise<EducationItem[]> {
   try {
-    const posts = await client.fetch<PostItem[] | null>(
-      `*[_type == "post"] | order(publishedAt desc){
-        _id,
-        title,
-        slug,
-        "mainImageUrl": mainImage.asset->url,
-        category,
-        publishedAt,
-        excerpt,
-        body
-      }`
+    const data = await client.fetch<EducationItem[] | null>(
+      `*[_type == "education"] | order(order desc)`
     );
-    
-    if (!posts || posts.length === 0) return fallbackPosts;
-    
-    return posts.map((post, idx) => ({
-      _id: post._id,
-      title: post.title || "",
-      slug: post.slug || { current: "" },
-      mainImageUrl: post.mainImageUrl || fallbackPosts[idx]?.mainImageUrl || fallbackPosts[0].mainImageUrl,
-      category: post.category || "General",
-      publishedAt: post.publishedAt || new Date().toISOString(),
-      excerpt: post.excerpt || "",
-      body: post.body,
-    }));
+    if (!data || data.length === 0) return fallbackEducation;
+    return data;
   } catch (error) {
-    console.warn("Sanity fetch error for 'post', returning mock fallback:", error);
-    return fallbackPosts;
+    console.warn("Sanity fetch error for 'education', returning mock fallback:", error);
+    return fallbackEducation;
   }
 }
 
-// Fetch Speaking Section Singleton Content
-export async function getSpeaking(): Promise<SpeakingData> {
+export async function getPublications(): Promise<PublicationItem[]> {
   try {
-    const data = await client.fetch<SpeakingData | null>(
-      `*[_type == "speakingSection"][0]{
-        title,
-        intro,
-        topics[]{
-          title,
-          description
-        },
-        contactEmail
-      }`
+    const data = await client.fetch<PublicationItem[] | null>(
+      `*[_type == "publication"] | order(order desc)`
     );
-    
-    if (!data) return fallbackSpeaking;
-    
-    return {
-      title: data.title || fallbackSpeaking.title,
-      intro: data.intro || fallbackSpeaking.intro,
-      topics: data.topics || fallbackSpeaking.topics,
-      contactEmail: data.contactEmail || fallbackSpeaking.contactEmail,
-    };
+    if (!data || data.length === 0) return fallbackPublications;
+    return data;
   } catch (error) {
-    console.warn("Sanity fetch error for 'speakingSection', returning mock fallback:", error);
-    return fallbackSpeaking;
+    console.warn("Sanity fetch error for 'publication', returning mock fallback:", error);
+    return fallbackPublications;
+  }
+}
+
+export async function getVoluntary(): Promise<VoluntaryItem[]> {
+  try {
+    const data = await client.fetch<VoluntaryItem[] | null>(
+      `*[_type == "voluntary"] | order(order desc)`
+    );
+    if (!data || data.length === 0) return fallbackVoluntary;
+    return data;
+  } catch (error) {
+    console.warn("Sanity fetch error for 'voluntary', returning mock fallback:", error);
+    return fallbackVoluntary;
   }
 }

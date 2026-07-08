@@ -1,42 +1,40 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import BooksSection from "@/components/BooksSection";
-import ThinkingSection from "@/components/ThinkingSection";
-import SpeakingSection from "@/components/SpeakingSection";
+import ExperienceSection from "@/components/ExperienceSection";
+import EducationSection from "@/components/EducationSection";
+import PublicationsSection from "@/components/PublicationsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
-import { getHero, getBooks, getPosts, getSpeaking } from "@/sanity/queries";
+import { 
+  getSiteSettings, 
+  getHero, 
+  getExperience, 
+  getEducation, 
+  getPublications 
+} from "@/sanity/queries";
 
 export default async function Home() {
-  // Fetch content dynamically from Sanity CMS (with fallback structures)
+  const settings = await getSiteSettings();
   const heroData = await getHero();
-  const booksData = await getBooks();
-  const postsData = await getPosts();
-  const speakingData = await getSpeaking();
+  const experienceData = await getExperience();
+  const educationData = await getEducation();
+  const publicationsData = await getPublications();
 
   return (
     <>
-      <Header />
+      <Header headerName={settings.headerName} />
       <main style={{ flex: 1 }}>
-        {/* Hero Section */}
         <HeroSection data={heroData} />
-        
-        {/* Books Showcase */}
-        <BooksSection books={booksData} />
-        
-        {/* Insights / Thinking Blog Feed */}
-        <ThinkingSection posts={postsData} />
-        
-        {/* Speaking Keynotes & Advisory Details */}
-        <SpeakingSection data={speakingData} />
-        
-        {/* Dynamic Contact & Newsletter Signup Form */}
-        <ContactSection contactEmail={speakingData.contactEmail} />
+        <ExperienceSection data={experienceData} />
+        <EducationSection data={educationData} />
+        <PublicationsSection data={publicationsData} />
+        <ContactSection settings={settings} />
       </main>
-      <Footer />
+      <Footer settings={settings} />
     </>
   );
 }
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

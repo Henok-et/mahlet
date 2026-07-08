@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import Loader from "@/components/Loader";
+import { getSiteSettings } from "@/sanity/queries";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -14,29 +16,28 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Lynda Gratton | Author, Academic & Future of Work Expert",
-  description:
-    "Official website of Professor Lynda Gratton. Professor of Management Practice at London Business School, founder of HSM Advisory, and author of Redesigning Work and The 100-Year Life.",
-  keywords: [
-    "Lynda Gratton",
-    "Future of Work",
-    "Redesigning Work",
-    "The 100-Year Life",
-    "London Business School",
-    "HSM Advisory",
-    "Hybrid Work",
-  ],
-  authors: [{ name: "Lynda Gratton" }],
-  openGraph: {
-    title: "Lynda Gratton | Author, Academic & Future of Work Expert",
-    description:
-      "Official website of Professor Lynda Gratton. Professor of Management Practice at London Business School, founder of HSM Advisory, and author of Redesigning Work and The 100-Year Life.",
-    type: "website",
-  },
-};
-
-import Loader from "@/components/Loader";
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSiteSettings();
+  
+  return {
+    title: settings.siteTitle || "Mahlet Teshome | Science Policy and Sustainable Development Leader",
+    description: settings.siteDescription || "Official website of Mahlet Teshome Kebede, Science Policy and Sustainable Development Leader.",
+    keywords: [
+      "Mahlet Teshome",
+      "Science Policy",
+      "Sustainable Development",
+      "African Union",
+      "Ethiopia",
+      "Biodiversity",
+    ],
+    authors: [{ name: settings.headerName || "Mahlet Teshome" }],
+    openGraph: {
+      title: settings.siteTitle || "Mahlet Teshome | Science Policy and Sustainable Development Leader",
+      description: settings.siteDescription || "Official website of Mahlet Teshome Kebede, Science Policy and Sustainable Development Leader.",
+      type: "website",
+    },
+  };
+}
 
 export default function RootLayout({
   children,
