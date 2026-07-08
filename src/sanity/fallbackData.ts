@@ -66,6 +66,15 @@ export interface CompetencyItem {
   description: string;
 }
 
+export interface BookItem {
+  _id: string;
+  title: string;
+  coverUrl?: string;
+  publishDate?: string;
+  purchaseUrl?: string;
+  description: string;
+}
+
 export const fallbackSiteSettings: SiteSettingsData = {
   siteTitle: "Mahlet Teshome | Science Policy and Sustainable Development Leader",
   siteDescription: "Official website of Mahlet Teshome Kebede, Science Policy and Sustainable Development Leader with over 20 years of experience designing and implementing equity-driven policies across 20+ countries.",
@@ -252,3 +261,14 @@ export const fallbackCompetencies: CompetencyItem[] = [
     description: "Design and conduct training workshops, seminars, event organization and co-ordination, delivery of technical papers and presentations. Established a broad network of contacts."
   }
 ];
+
+export const fallbackBooks: BookItem[] = [
+  {
+    _id: "book-1",
+    title: "A Comprehensive Guide Natural Remedies for Children's Health Issues: The Parent DIY for Sick Kids",
+    coverUrl: "/book/book1.jpg",
+    purchaseUrl: "https://a.co/d/017lRUhA",
+    description: "Nature is in no short supply to provide for us when we are well and when we need healing. How fulfilling is it to know that the most precious and vulnerable among us; children might be treated from the abundance of nature for the most common illnesses! This book intends to remind readers of natural remedies available to use when a child is sick nourishing their bodies without any complications."
+  }
+];
+

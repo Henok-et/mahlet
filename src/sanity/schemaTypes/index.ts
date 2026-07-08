@@ -7,6 +7,7 @@ import { publicationSchema } from "./publication";
 import { voluntarySchema } from "./voluntary";
 import { refereeSchema } from "./referee";
 import { competencySchema } from "./competency";
+import { bookSchema } from "./book";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   siteSettingsSchema,
@@ -16,5 +17,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   publicationSchema,
   voluntarySchema,
   refereeSchema,
-  competencySchema
+  competencySchema,
+  bookSchema
 ];

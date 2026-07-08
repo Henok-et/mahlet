@@ -8,6 +8,7 @@ import {
   fallbackVoluntary,
   fallbackReferees,
   fallbackCompetencies,
+  fallbackBooks,
   SiteSettingsData,
   HeroData,
   ExperienceItem,
@@ -15,7 +16,8 @@ import {
   PublicationItem,
   VoluntaryItem,
   RefereeItem,
-  CompetencyItem
+  CompetencyItem,
+  BookItem
 } from "./fallbackData";
 
 export async function getSiteSettings(): Promise<SiteSettingsData> {
@@ -110,5 +112,25 @@ export async function getVoluntary(): Promise<VoluntaryItem[]> {
   } catch (error) {
     console.warn("Sanity fetch error for 'voluntary', returning mock fallback:", error);
     return fallbackVoluntary;
+  }
+}
+
+export async function getBooks(): Promise<BookItem[]> {
+  try {
+    const data = await client.fetch<BookItem[] | null>(
+      `*[_type == "book"] | order(order desc){
+        _id,
+        title,
+        "coverUrl": cover.asset->url,
+        publishDate,
+        purchaseUrl,
+        description
+      }`
+    );
+    if (!data || data.length === 0) return fallbackBooks;
+    return data;
+  } catch (error) {
+    console.warn("Sanity fetch error for 'book', returning mock fallback:", error);
+    return fallbackBooks;
   }
 }

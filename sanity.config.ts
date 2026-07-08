@@ -47,6 +47,7 @@ export default defineConfig({
             S.documentTypeListItem("voluntary").title("Voluntary Duties"),
             S.documentTypeListItem("referee").title("Referees"),
             S.documentTypeListItem("competency").title("Competencies"),
+            S.documentTypeListItem("book").title("Books"),
           ]),
     }),
   ],
