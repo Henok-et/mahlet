@@ -38,12 +38,6 @@ export const siteSettingsSchema = defineType({
       title: "Phone Number",
       type: "string",
     }),
-    defineField({
-      name: "languages",
-      title: "Languages",
-      type: "array",
-      of: [{ type: "string" }],
-      description: "List of languages and proficiencies (e.g., 'English (Fluent)')",
-    }),
+
   ],
 });
