@@ -19,7 +19,8 @@ import {
   getBooks,
   getCompetencies,
   getVoluntary,
-  getReferees
+  getReferees,
+  getLanguages
 } from "@/sanity/queries";
 
 export default async function Home() {
@@ -32,6 +33,7 @@ export default async function Home() {
   const competenciesData = await getCompetencies();
   const voluntaryData = await getVoluntary();
   const refereesData = await getReferees();
+  const languagesData = await getLanguages();
 
   return (
     <>
@@ -42,7 +44,7 @@ export default async function Home() {
         <ExperienceSection data={experienceData} />
         <EducationSection data={educationData} />
         <PublicationsSection data={publicationsData} />
-        <CompetenciesSection competencies={competenciesData} languages={settings.languages || []} />
+        <CompetenciesSection competencies={competenciesData} languages={languagesData} />
         <VoluntarySection data={voluntaryData} />
         <RefereesSection data={refereesData} />
         <ContactSection settings={settings} />

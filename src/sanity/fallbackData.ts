@@ -5,6 +5,7 @@ export interface SiteSettingsData {
   contactEmail?: string;
   linkedinUrl?: string;
   phoneNumber?: string;
+  languages?: LanguageItem[];
 }
 
 export interface HeroData {
@@ -75,18 +76,19 @@ export interface BookItem {
   description: string;
 }
 
+export interface LanguageItem {
+  _id: string;
+  name: string;
+  proficiency?: string;
+}
+
 export const fallbackSiteSettings: SiteSettingsData = {
   siteTitle: "Mahlet Teshome | Science Policy & Sustainable Development Leader",
   siteDescription: "Over 20 years of experience designing and implementing equity-driven policies across 20+ countries.",
   headerName: "Mahlet Teshome",
   contactEmail: "mteshu@gmail.com",
   linkedinUrl: "https://linkedin.com/in/mahlet-teshome-5200b32b",
-  phoneNumber: "+251911217284",
-  languages: [
-    "English (Fluent)",
-    "Amharic (Fluent)",
-    "French (Rudimentary)"
-  ]
+  phoneNumber: "+251911217284"
 };
 
 export const fallbackHero: HeroData = {
@@ -287,10 +289,10 @@ export const fallbackCompetencies: CompetencyItem[] = [
   }
 ];
 
-export const fallbackLanguages: string[] = [
-  "English (Fluent)",
-  "Amharic (Fluent)",
-  "French (Rudimentary)"
+export const fallbackLanguages: LanguageItem[] = [
+  { _id: "lang-1", name: "English", proficiency: "Fluent" },
+  { _id: "lang-2", name: "Amharic", proficiency: "Fluent" },
+  { _id: "lang-3", name: "French", proficiency: "Rudimentary" }
 ];
 
 export const fallbackBooks: BookItem[] = [

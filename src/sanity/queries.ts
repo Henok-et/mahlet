@@ -17,7 +17,8 @@ import {
   VoluntaryItem,
   RefereeItem,
   CompetencyItem,
-  BookItem
+  BookItem,
+  LanguageItem
 } from "./fallbackData";
 
 export { fallbackLanguages } from "./fallbackData";
@@ -28,8 +29,7 @@ export async function getSiteSettings(): Promise<SiteSettingsData> {
     if (!data) return fallbackSiteSettings;
     return {
       ...fallbackSiteSettings,
-      ...data,
-      languages: data.languages && data.languages.length > 0 ? data.languages : fallbackSiteSettings.languages
+      ...data
     };
   } catch (error) {
     console.warn("Sanity fetch error for 'siteSettings', returning mock fallback:", error);
@@ -165,5 +165,18 @@ export async function getReferees(): Promise<RefereeItem[]> {
   } catch (error) {
     console.warn("Sanity fetch error for 'referee', returning mock fallback:", error);
     return fallbackReferees;
+  }
+}
+
+export async function getLanguages(): Promise<LanguageItem[]> {
+  try {
+    const data = await client.fetch<LanguageItem[] | null>(
+      `*[_type == "language"] | order(order asc)`
+    );
+    if (!data || data.length === 0) return fallbackLanguages;
+    return data;
+  } catch (error) {
+    console.warn("Sanity fetch error for 'language', returning mock fallback:", error);
+    return fallbackLanguages;
   }
 }

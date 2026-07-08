@@ -7,6 +7,7 @@ import { publicationSchema } from "./publication";
 import { voluntarySchema } from "./voluntary";
 import { refereeSchema } from "./referee";
 import { competencySchema } from "./competency";
+import { languageSchema } from "./language";
 import { bookSchema } from "./book";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
@@ -18,5 +19,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   voluntarySchema,
   refereeSchema,
   competencySchema,
+  languageSchema,
   bookSchema
 ];

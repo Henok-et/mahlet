@@ -1,10 +1,10 @@
 "use client";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { CompetencyItem } from "@/sanity/fallbackData";
+import { CompetencyItem, LanguageItem } from "@/sanity/fallbackData";
 
 interface CompetenciesSectionProps {
   competencies: CompetencyItem[];
-  languages: string[];
+  languages: LanguageItem[];
 }
 
 export default function CompetenciesSection({ competencies, languages }: CompetenciesSectionProps) {
@@ -53,8 +53,8 @@ export default function CompetenciesSection({ competencies, languages }: Compete
           }}>
             <h3 style={{ fontSize: "1.25rem", color: "var(--gold-dark)", marginBottom: "1rem" }}>Languages</h3>
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1rem" }}>
-              {languages.map((lang, index) => (
-                <span key={index} style={{
+              {languages.map((lang) => (
+                <span key={lang._id} style={{
                   background: "var(--bg-primary)",
                   padding: "0.5rem 1.5rem",
                   borderRadius: "2rem",
@@ -62,7 +62,7 @@ export default function CompetenciesSection({ competencies, languages }: Compete
                   color: "var(--text-primary)",
                   border: "1px solid var(--border)"
                 }}>
-                  {lang}
+                  {lang.name} {lang.proficiency ? `(${lang.proficiency})` : ""}
                 </span>
               ))}
             </div>
