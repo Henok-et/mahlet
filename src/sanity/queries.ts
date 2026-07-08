@@ -25,7 +25,12 @@ export { fallbackLanguages } from "./fallbackData";
 export async function getSiteSettings(): Promise<SiteSettingsData> {
   try {
     const data = await client.fetch<SiteSettingsData | null>(`*[_type == "siteSettings"][0]`);
-    return data || fallbackSiteSettings;
+    if (!data) return fallbackSiteSettings;
+    return {
+      ...fallbackSiteSettings,
+      ...data,
+      languages: data.languages && data.languages.length > 0 ? data.languages : fallbackSiteSettings.languages
+    };
   } catch (error) {
     console.warn("Sanity fetch error for 'siteSettings', returning mock fallback:", error);
     return fallbackSiteSettings;

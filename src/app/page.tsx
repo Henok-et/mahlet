@@ -19,8 +19,7 @@ import {
   getBooks,
   getCompetencies,
   getVoluntary,
-  getReferees,
-  fallbackLanguages
+  getReferees
 } from "@/sanity/queries";
 
 export default async function Home() {
@@ -43,7 +42,7 @@ export default async function Home() {
         <ExperienceSection data={experienceData} />
         <EducationSection data={educationData} />
         <PublicationsSection data={publicationsData} />
-        <CompetenciesSection competencies={competenciesData} languages={fallbackLanguages} />
+        <CompetenciesSection competencies={competenciesData} languages={settings.languages || []} />
         <VoluntarySection data={voluntaryData} />
         <RefereesSection data={refereesData} />
         <ContactSection settings={settings} />

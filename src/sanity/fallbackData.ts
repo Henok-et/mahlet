@@ -76,12 +76,17 @@ export interface BookItem {
 }
 
 export const fallbackSiteSettings: SiteSettingsData = {
-  siteTitle: "Mahlet Teshome | Science Policy and Sustainable Development Leader",
-  siteDescription: "Official website of Mahlet Teshome Kebede, Science Policy and Sustainable Development Leader with over 20 years of experience designing and implementing equity-driven policies across 20+ countries.",
+  siteTitle: "Mahlet Teshome | Science Policy & Sustainable Development Leader",
+  siteDescription: "Over 20 years of experience designing and implementing equity-driven policies across 20+ countries.",
   headerName: "Mahlet Teshome",
   contactEmail: "mteshu@gmail.com",
   linkedinUrl: "https://linkedin.com/in/mahlet-teshome-5200b32b",
-  phoneNumber: "(+251) 911217284"
+  phoneNumber: "+251911217284",
+  languages: [
+    "English (Fluent)",
+    "Amharic (Fluent)",
+    "French (Rudimentary)"
+  ]
 };
 
 export const fallbackHero: HeroData = {
