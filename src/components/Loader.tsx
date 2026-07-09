@@ -14,7 +14,7 @@ const greetings = [
   "안녕하세요",
   "こんにちは",
   "你好",
-  "Hello",
+  "ሰላም",
 ];
 
 export default function Loader() {

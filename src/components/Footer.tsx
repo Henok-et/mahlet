@@ -115,15 +115,14 @@ export default function Footer({ settings }: FooterProps) {
               target="_blank" 
               rel="noopener noreferrer"
               style={{
-                fontSize: "1.1rem",
+                fontSize: "0.9rem",
                 fontWeight: "700",
-                color: "var(--gold)",
-                textTransform: "uppercase",
-                letterSpacing: "1px",
+                letterSpacing: "0.5px",
                 textDecoration: "none"
               }}
             >
-              Website by Henok D
+              <span style={{ color: "#666" }}>Website by </span>
+              <span style={{ color: "var(--gold)" }}>Henok D</span>
             </a>
           </div>
         </div>
